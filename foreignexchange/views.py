@@ -50,7 +50,7 @@ class RateAdd(generic.FormView):
 
 
 class RateTrace(generic.FormView):
-    ''' Trace avarage rate in 7 days '''
+    ''' Trace rate and avarage rate in 7 days '''
 
     http_method_names = (u'post',)
     form_class = forms.RateTraceForm

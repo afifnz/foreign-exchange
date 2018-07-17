@@ -4,13 +4,6 @@ from django import forms
 from . import models
 
 
-class CurrencyForm(forms.ModelForm):
-
-    class Meta:
-        model = models.Currency
-        fields = ('currency_code', 'description')
-
-
 class ExchangeForm(forms.ModelForm):
 
     class Meta:
@@ -60,6 +53,7 @@ class RateForm(forms.Form):
         from_currency = self.cleaned_data.get('from_currency')
         to_currency = self.cleaned_data.get('to_currency')
 
+        # validate error if from_currency field same with to_currency field
         if from_currency == to_currency:
             raise forms.ValidationError(
                 'The origin and destination of currency must be different.')
@@ -111,3 +105,10 @@ class RateTraceForm(forms.Form):
             })
 
         return result
+
+
+class CurrencyForm(forms.ModelForm):
+
+    class Meta:
+        model = models.Currency
+        fields = ('currency_code', 'description')
