@@ -2,14 +2,15 @@
 
 |Method|URI|URL Params|Data Params|
 |------|---|-----------|-----------|
-| `POST` | /exchange/add/ |  | `{'currency_from': 'IDR' }` |
-| `DELETE` | /exchange/{id}/delete/ | `id=[integer]` |  |
-| `POST` | /rate/add/ |  |  |
+| `POST` | /exchange/ |  | `{'currency_from': 'IDR' }` |
+| `DELETE` | /exchange/{id}/ | `id=[integer]` |  |
+| `POST` | /rate/ |  |  |
 | `POST` | /rate-trace/ |  |  |
+
 
 # Database
 
-Currency
+**Currency**
 
 ```
 +----+---------------+------------------------+
@@ -20,8 +21,9 @@ Currency
 |  3 |  JPY          | Japan Currency         |
 +----+---------------+------------------------+
 ```
+The `Currency` table is used as master of table to store currency data.
 
-Exchange
+**Exchange**
 ```
 +----+---------------+--------------+
 | id | from_currency |  to_currency |
@@ -30,10 +32,10 @@ Exchange
 |  2 |  2            |      3       |
 +----+---------------+--------------+
 ```
-
+The `Exchange` table is used to store currency exchange schema.
 field `from_currency` and `to_currency` is `FOREIGN KEY` to table `Currency`
 
-Rate
+**Rate**
 ```
 +----+----------+-----------+-----------+
 | id | exchange | rate      + date      +
@@ -43,8 +45,9 @@ Rate
 |  3 |     1    |  14164.4  | 07/17/18  |
 +----+----------+-----------+-----------+
 ```
-
+The `Rate` table is used to store daily rate of foreign exchange.
 field `exchange` is `FOREIGN KEY` to table `Exchange`
+
 
 # Running the environment
 
