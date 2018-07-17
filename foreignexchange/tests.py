@@ -6,11 +6,13 @@ class ExchangeTest(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.usd = models.Currency.objects.create(
+
+        # initial setup add currency master data
+        models.Currency.objects.create(
             currency_code='USD', description='United states currency')
-        self.idr = models.Currency.objects.create(
+        models.Currency.objects.create(
             currency_code='IDR', description='Indonesia states currency')
-        self.jpy = models.Currency.objects.create(
+        models.Currency.objects.create(
             currency_code='JPY', description='Japan currency')
 
     def test_exchange_add_and_delete(self):
@@ -53,11 +55,11 @@ class RateTest(TestCase):
         self.client = Client()
 
         # create initial data of currency
-        self.usd = models.Currency.objects.create(
+        models.Currency.objects.create(
             currency_code='USD', description='United states currency')
-        self.idr = models.Currency.objects.create(
+        models.Currency.objects.create(
             currency_code='IDR', description='Indonesia states currency')
-        self.jpy = models.Currency.objects.create(
+        models.Currency.objects.create(
             currency_code='JPY', description='Japan currency')
 
         # create initial data of exchange rate
@@ -76,6 +78,10 @@ class RateTest(TestCase):
             'to_currency': 'USD'}
         self.client.post(
             '/foreignexchange/exchange/', data)
+
+        self.jpy_usd = models.Exchange.objects.get(
+            from_currency__currency_code='JPY',
+            to_currency__currency_code='USD')
 
     def test_rate_add(self):
         data = {
@@ -106,11 +112,15 @@ class RateTest(TestCase):
         self.assertEqual(response.status_code, 400)
 
     def test_rate_trace(self):
+        # create example daily rate data
         models.Rate.objects.create(
             exchange=self.usd_idr, rate=14299.89, date='2018-07-20')
 
         models.Rate.objects.create(
             exchange=self.usd_idr, rate=14366.75, date='2018-07-17')
+
+        models.Rate.objects.create(
+            exchange=self.jpy_usd, rate=112.75, date='2018-07-13')
 
         # enter date format like:
         # 2018-07-20 , 07/20/2018 , 07/20/18
@@ -120,6 +130,27 @@ class RateTest(TestCase):
         response = self.client.post(
             '/foreignexchange/rate-trace/', data)
         self.assertEqual(response.status_code, 200)
+
+        result = response.json().get('result')
+
+        for objek in result:
+            from_currency = objek.get('from')
+            to_currency = objek.get('to')
+
+            if from_currency == 'USD' and to_currency == 'IDR':
+                # test last rate data in 7 days
+                rate = objek.get('rate')
+                self.assertEqual(rate, 14299.89)
+
+                # test averge rate data in 7 days
+                avg_rate = objek.get('avg_rate')
+                self.assertEqual(avg_rate, (14299.89+14366.75)/2)
+
+            if from_currency == 'JPY' and to_currency == 'USD':
+
+                # result insufficient data, because no rate data in 7 days
+                rate = objek.get('rate')
+                self.assertEqual(rate, 'insufficient data')
 
 
 class CurrencyTest(TestCase):
