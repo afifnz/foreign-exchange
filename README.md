@@ -66,7 +66,7 @@
 
 ```
 +----+---------------+------------------------+
-| id | currency_code |  Description           |
+| id | currency_code |  description           |
 +----+---------------+------------------------+
 |  1 |  IDR          | Indonesia Currency     |
 |  2 |  USD          | United states Currency |
