@@ -1,12 +1,44 @@
 # API
 
-|Method|URI|URL Params|Data Params|
-|------|---|-----------|-----------|
-| `POST` | /exchange/ |  | `{'currency_from': 'IDR' }` |
-| `DELETE` | /exchange/{id}/ | `id=[integer]` |  |
-| `POST` | /rate/ |  |  |
-| `POST` | /rate-trace/ |  |  |
+**Add Foreign Exchange**
+* **URL**
+    `/foreignexchange/exchange/`
+* **Method**
+    `POST`
+* **Data Params**
+    `from_currency=[integer]`
+    `to_currency=[integer]`
+* **Success Response**
+* **Error Response**
 
+**Delete Foreign Exchange**
+* **URL**
+    `/foreignexchange/exchange/{id}/`
+* **Method**
+    `DELETE`
+* **URL Params**
+    `id=[integer]`
+* **Success Response**
+* **Error Response**
+
+**Add Daily Rate**
+* **URL**
+    `/foreignexchange/rate/`
+* **Method**
+    `POST`
+* **Data Params**
+* **Success Response**
+* **Error Response**
+
+**Trace Rate**
+* **URL**
+    `/foreignexchange/rate-trace/`
+* **Method**
+    `POST`
+* **Data Params**
+    `date=[date]`
+* **Success Response**
+* **Error Response**
 
 # Database
 
