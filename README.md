@@ -1,14 +1,16 @@
 # API
 
 **Add Foreign Exchange**
-* **URL**
+* **URL** <br/>
     `/foreignexchange/exchange/`
-* **Method**
+* **Method** <br/>
     `POST`
-* **Data Params**
+* **Data Params** <br/>
     `from_currency=[integer]`
     `to_currency=[integer]`
 * **Success Response**
+    * **Code:** 200 <br/>
+        **Content: ** `{}`
 * **Error Response**
 
 **Delete Foreign Exchange**
