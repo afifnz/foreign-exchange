@@ -6,14 +6,14 @@
 * **Method** <br/>
     `POST`
 * **Data Params** <br/>
-    `from_currency=[integer]`
-    `to_currency=[integer]`
+    * `from_currency=[integer]`
+    * `to_currency=[integer]`
 * **Success Response**
     * **Code:** 200 <br/>
-      **Content:** `{}`
+      **Content:** `{'message': 'add exchange rate success'}`
 * **Error Response**
     * **Code:** 400 <br/>
-      **Content:** `{}`
+      **Content:** `{'__all__':'message for validation error'}`
 
 **Delete Foreign Exchange**
 * **URL** <br/>
@@ -24,10 +24,10 @@
     `id=[integer]`
 * **Success Response** <br/>
     * **Code:** 200 <br/>
-      **Content:** `{}`
+      **Content:** `{'message': 'delete exchange rate success'}`
 * **Error Response** <br/>
     * **Code:** 400 <br/>
-      **Content:** `{}`
+      **Content:** `{'__all__':'message for validation error'}`
 
 **Add Daily Rate**
 * **URL** <br/>
@@ -40,10 +40,10 @@
     * `rate=[float]`
 * **Success Response** <br/>
     * **Code:** 200 <br/>
-      **Content:** `{}`
+      **Content:** `{'message': 'add daily rate success'}`
 * **Error Response** <br/>
     * **Code:** 400 <br/>
-      **Content:** `{}`
+      **Content:** `{'__all__':'message for validation error'}`
 
 **Trace Rate**
 * **URL** <br/>
@@ -51,13 +51,14 @@
 * **Method** <br/>
     `POST`
 * **Data Params** <br/>
-    * `date=[date]`
+    * `date=[date]` <br/>
+    enter date format like `2018-07-20` , `07/20/2018` , `07/20/18`
 * **Success Response** <br/>
     * **Code:** 200 <br/>
-      **Content:** `{}`
+      **Content:** `{'result': [{'from': 'USD', 'to': 'IDR', 'rate': '14366.7', avg_rate:14296.7}]}`
 * **Error Response** <br/>
     * **Code:** 400 <br/>
-      **Content:** `{}`
+      **Content:** `{'__all__':'message for validation error'}`
 
 # Database
 

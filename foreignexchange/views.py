@@ -41,7 +41,7 @@ class RateAdd(generic.FormView):
 
     def form_valid(self, form):
         self.object = form.save()
-        data = {'message': 'add currency success'}
+        data = {'message': 'add daily rate success'}
         return JsonResponse(data)
 
     def form_invalid(self, form):
