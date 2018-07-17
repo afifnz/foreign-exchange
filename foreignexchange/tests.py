@@ -163,7 +163,7 @@ class RateTest(TestCase):
             exchange=self.usd_idr, rate=14366.75, date='2018-07-17')
 
         # enter date format like:
-        # 2018-07-20 , 07/20/2018 , 07/20/06
+        # 2018-07-20 , 07/20/2018 , 07/20/18
         data = {
             'date': '2018-07-20',
         }
