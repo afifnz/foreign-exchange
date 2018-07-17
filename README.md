@@ -10,37 +10,54 @@
     `to_currency=[integer]`
 * **Success Response**
     * **Code:** 200 <br/>
-        **Content: ** `{}`
+      **Content:** `{}`
 * **Error Response**
+    * **Code:** 400 <br/>
+      **Content:** `{}`
 
 **Delete Foreign Exchange**
-* **URL**
+* **URL** <br/>
     `/foreignexchange/exchange/{id}/`
-* **Method**
+* **Method** <br/>
     `DELETE`
-* **URL Params**
+* **URL Params** <br/>
     `id=[integer]`
-* **Success Response**
-* **Error Response**
+* **Success Response** <br/>
+    * **Code:** 200 <br/>
+      **Content:** `{}`
+* **Error Response** <br/>
+    * **Code:** 400 <br/>
+      **Content:** `{}`
 
 **Add Daily Rate**
-* **URL**
+* **URL** <br/>
     `/foreignexchange/rate/`
-* **Method**
+* **Method** <br/>
     `POST`
-* **Data Params**
-* **Success Response**
-* **Error Response**
+* **Data Params** <br/>
+    * `from_currency=[integer]`
+    * `to_currency=[integer]`
+    * `rate=[float]`
+* **Success Response** <br/>
+    * **Code:** 200 <br/>
+      **Content:** `{}`
+* **Error Response** <br/>
+    * **Code:** 400 <br/>
+      **Content:** `{}`
 
 **Trace Rate**
-* **URL**
+* **URL** <br/>
     `/foreignexchange/rate-trace/`
-* **Method**
+* **Method** <br/>
     `POST`
-* **Data Params**
-    `date=[date]`
-* **Success Response**
-* **Error Response**
+* **Data Params** <br/>
+    * `date=[date]`
+* **Success Response** <br/>
+    * **Code:** 200 <br/>
+      **Content:** `{}`
+* **Error Response** <br/>
+    * **Code:** 400 <br/>
+      **Content:** `{}`
 
 # Database
 
