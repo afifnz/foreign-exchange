@@ -60,6 +60,7 @@
     * **Code:** 400 <br/>
       **Content:** `{'__all__':'message for validation error'}`
 
+
 # Database
 
 **Currency**
@@ -103,7 +104,10 @@ field `exchange` is `FOREIGN KEY` to table `Exchange`
 
 # Running the environment
 
-You need to have Docker installed in your machine, after that, just run this command `docker-compose build && docker-compose up -d`.
+* You need to have Docker installed in your machine,
+* Run migration command `docker-compose run web python3 manage.py migrate`
+* After that, just run this command `docker-compose build && docker-compose up -d`.
+* To make sure the web service is running, open `localhost:8000` in your browser
 
 
 # Testing
