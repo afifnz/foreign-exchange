@@ -6,8 +6,8 @@
 * **Method** <br/>
     `POST`
 * **Data Params** <br/>
-    * `from_currency=[integer]`
-    * `to_currency=[integer]`
+    * `from_currency=[str]`
+    * `to_currency=[str]`
 * **Success Response**
     * **Code:** 200 <br/>
       **Content:** `{'message': 'add exchange rate success'}`
@@ -35,8 +35,8 @@
 * **Method** <br/>
     `POST`
 * **Data Params** <br/>
-    * `from_currency=[integer]`
-    * `to_currency=[integer]`
+    * `from_currency=[str]`
+    * `to_currency=[str]`
     * `rate=[float]`
 * **Success Response** <br/>
     * **Code:** 200 <br/>
@@ -55,7 +55,7 @@
     enter date format like `2018-07-20` , `07/20/2018` , `07/20/18`
 * **Success Response** <br/>
     * **Code:** 200 <br/>
-      **Content:** `{'result': [{'from': 'USD', 'to': 'IDR', 'rate': '14366.7', avg_rate:14296.7}]}`
+      **Content:** `{'result': [{'from': 'USD', 'to': 'IDR', 'rate': '14366.7', avg_rate: 14296.7}]}`
 * **Error Response** <br/>
     * **Code:** 400 <br/>
       **Content:** `{'__all__':'message for validation error'}`
@@ -95,7 +95,7 @@ field `from_currency` and `to_currency` is `FOREIGN KEY` to table `Currency`
 +----+----------+-----------+-----------+
 |  1 |     1    |  14366.7  | 07/20/18  |
 |  2 |     1    |  14201.2  | 07/18/18  |
-|  3 |     1    |  14164.4  | 07/17/18  |
+|  3 |     2    |  14164.4  | 07/12/18  |
 +----+----------+-----------+-----------+
 ```
 The `Rate` table is used to store daily rate of foreign exchange.
@@ -104,12 +104,12 @@ field `exchange` is `FOREIGN KEY` to table `Exchange`
 
 # Running the environment
 
-* You need to have Docker installed in your machine,
-* Run migration command `docker-compose run web python3 manage.py migrate`
+* You need to have Docker installed in your machine.
+* Run migration command `docker-compose run web python3 manage.py migrate`.
 * After that, just run this command `docker-compose build && docker-compose up -d`.
-* To make sure the web service is running, open `localhost:8000` in your browser
+* To make sure the web service is running, open url <http://localhost:8000> in your browser.
 
 
 # Testing
 
-To make a testing run this command `docker-compose run web python3 manage.py test`
+To make a testing, run this command `docker-compose run web python3 manage.py test`
